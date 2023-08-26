@@ -4,6 +4,7 @@ import axios from 'axios';
 import { API_URL } from "../utils/constants";
 import AddProject from "./AddProject";
 import { ThemeContext } from "../context/theme.context";
+import projectsService from "../services/projects.service";
 
 const ProjectList = () => {
     const { theme } = useContext(ThemeContext)
@@ -12,10 +13,7 @@ const ProjectList = () => {
 
     const getAllProject = async () => {
         try {
-            const storedToken = localStorage.getItem('authToken')
-            const response = await axios.get(`${API_URL}/api/projects`, {
-                headers: { Authorization: `Bearer ${storedToken}`}
-            });
+            const response = await projectsService.getAllProjects()
             setProjects(response.data);
         } catch (error) {
             console.log(error)
@@ -27,7 +25,7 @@ const ProjectList = () => {
     },[])
 
     const deleteProject = async (projectId) => {
-        await axios.delete(`${API_URL}/api/projects/${projectId}`)
+        await projectsService.deleteProject(projectId)
         getAllProject()
     } 
 

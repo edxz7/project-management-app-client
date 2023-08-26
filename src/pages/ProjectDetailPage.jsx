@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { API_URL } from "../utils/constants";
 import axios from "axios";
 import AddTask from "./AddTask";
+import projectsService from "../services/projects.service";
+import taskService from "../services/tasks.service";
 
 const ProjectDetailPage = () => {
     const [ project, setProject ] = useState(null)
@@ -10,7 +12,7 @@ const ProjectDetailPage = () => {
     const { projectId } = useParams();
 
     const getOneProject = async () => {
-        const oneProject = (await axios.get(`${API_URL}/api/projects/${projectId}`)).data
+        const oneProject = (await projectsService.getOneProject(projectId)).data
         setProject(oneProject)
     }
 
@@ -21,7 +23,7 @@ const ProjectDetailPage = () => {
 
 
     const deleteTask = async (taskId) => {
-        await axios.delete(`${API_URL}/api/tasks/${taskId}`)
+        await taskService.deleteTask(taskId)
         getOneProject()
     }
     return (

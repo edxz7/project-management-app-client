@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { API_URL } from "../utils/constants";
+import taskService from "../services/tasks.service";
 
 const initTaskForm = {
     title: '',
@@ -18,11 +19,9 @@ const AddTask = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        try {          
-            await axios.post(
-              `${API_URL}/api/tasks`, 
-              {...taskStateForm, projectId: props.projectId}
-            )
+        try {      
+            await taskService({...taskStateForm, projectId: props.projectId})    
+
             setTaskStateForm(initTaskForm)
             props.getOneProject()
         } catch (error) {
