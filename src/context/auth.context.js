@@ -81,6 +81,18 @@ const AuthProvider = (props) => {
         authenticateUser()
     }, [])
 
+
+    const removeToken = () => {
+        localStorage.removeItem('authToken')
+    }
+
+    const logout = () => {
+        removeToken()
+        setIsLoggedIn(false);
+        setIsLoading(false);
+        setUser(null);  
+    }
+
     return (
         <AuthContext.Provider 
             value={{ 
@@ -89,6 +101,7 @@ const AuthProvider = (props) => {
                 isLoading, 
                 storeToken,
                 authenticateUser,
+                logout
             }}>
             {props.children}
         </AuthContext.Provider>
