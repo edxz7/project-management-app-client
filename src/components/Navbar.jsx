@@ -8,7 +8,7 @@ const Navbar = () => {
 
     const { theme, toggleTheme } = useContext(ThemeContext)
 
-    const { isLoggedIn, user } = useContext(AuthContext)
+    const { isLoggedIn, user, logout } = useContext(AuthContext)
 
     console.log('isLoggedIn from Navbar ', isLoggedIn);
 
@@ -29,7 +29,7 @@ const Navbar = () => {
                     <Link to="/projects">
                         <Button>Projects</Button>
                     </Link>
-                    <Button>Logout</Button>
+                    <button onClick={(logout)} >Logout</button>
                     <span style={{color: 'orange'}}>{ user && user.name}</span>
                 </>
             )
