@@ -1,7 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-import { API_URL } from "../utils/constants";
 import AddProject from "./AddProject";
 import { ThemeContext } from "../context/theme.context";
 import projectsService from "../services/projects.service";

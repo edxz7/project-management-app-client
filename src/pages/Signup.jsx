@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { API_URL } from "../utils/constants";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../services/auth.service";
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { API_URL } from "../utils/constants";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import projectsService from "../services/projects.service";
 
 const initUpdateForm = {
     title: '',
@@ -18,7 +17,7 @@ const EditProjectPage = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        axios.get(`${API_URL}/api/projects/${projectId}`)
+        projectsService.getOneProject(projectId)
         .then(response => {
             const oneProject = response.data;
             handleUpdateForm('title', oneProject.title);
@@ -30,7 +29,7 @@ const EditProjectPage = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        await axios.put(`${API_URL}/api/projects/${projectId}`, updateForm) 
+        await projectsService.updateProject(updateForm) 
         // hacemos un redirect de nuestro user a la pagina de la lisat de projectos
         navigate(`/projects/${projectId}`)
     }

@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { API_URL } from "../utils/constants";
-import axios from "axios";
 import AddTask from "./AddTask";
 import projectsService from "../services/projects.service";
 import taskService from "../services/tasks.service";

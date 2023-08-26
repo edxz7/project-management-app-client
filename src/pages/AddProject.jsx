@@ -1,6 +1,5 @@
-import axios from "axios";
 import { useState } from "react";
-import { API_URL } from "../utils/constants";
+import projectsService from "../services/projects.service";
 
 const initProjectForm = {
     title: '',
@@ -26,7 +25,7 @@ const AddProject = (props) => {
         e.preventDefault()
         console.log('Se esta llamando?')
         try {
-            await axios.post(`${API_URL}/api/projects`, projectStateForm)
+            await projectsService.createProject(projectStateForm)
             setProjectStateForm(initProjectForm)
             props.getAllProject()
 
